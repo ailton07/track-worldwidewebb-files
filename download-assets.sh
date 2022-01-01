@@ -14,7 +14,7 @@ download_file () {
     DOWNLOADING_STR="Downloading ${CURRENT_URL}"
     echo $DOWNLOADING_STR
     HTTP_CODE=$(curl -O --write-out "%{http_code}\n" "${CURRENT_URL}" --silent)
-    echo $HTTP_CODE
+    echo $MOVE_TO_PRETTY$HTTP_CODE
 }
 
 CURRENT_URL="${BASE_URL}latest.txt"
@@ -65,3 +65,8 @@ echo
 PRETTIER="npx prettier --write *.js"
 echo "${PRETTIER}"
 ${PRETTIER}
+
+
+MOVE_TO_PRETTY='mv *.js ./pretty && mv *.html ./pretty'
+echo "Moving the pretiffied JSs: ${MOVE_TO_PRETTY}"
+${MOVE_TO_PRETTY}
