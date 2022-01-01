@@ -23,7 +23,7 @@ download_file $CURRENT_URL
 CURRENT_URL="${BASE_BUILD}index.html"
 download_file $CURRENT_URL
 
-CURRENT_URL="${BASE_ASSETS}NewTokyoOnline.js?v=1-1"
+CURRENT_URL="${BASE_ASSETS}NewTokyoOnline.js"
 download_file $CURRENT_URL
 
 CURRENT_URL="${BASE_ASSETS}zph_getInputValue.js"
