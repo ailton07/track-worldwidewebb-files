@@ -52,3 +52,16 @@ download_file $CURRENT_URL
 
 CURRENT_URL="${BASE_ASSETS}fqh_gmdevblogweblocalstorage.js"
 download_file $CURRENT_URL
+
+echo
+echo
+SAVE_RAW_FILES="cp *.js ./raw_files"
+echo "Saving raw files: ${SAVE_RAW_FILES}"
+${SAVE_RAW_FILES}
+
+
+echo
+echo
+PRETTIER="npx prettier --write *.js"
+echo "${PRETTIER}"
+${PRETTIER}

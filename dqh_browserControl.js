@@ -17,21 +17,21 @@ function audioPlay(src) {
   playingAudio.crossOrigin = "anonymous";
   playingAudio.loop = true;
 
-  playingAudio.addEventListener('waiting', () => {
+  playingAudio.addEventListener("waiting", () => {
     playingAudioIsPlaying = false;
   });
 
-  playingAudio.addEventListener('playing', () => {
+  playingAudio.addEventListener("playing", () => {
     playingAudioIsPlaying = true;
   });
 
   playingAudio.play().catch((err) => {
     console.error("Audio playback error", err);
-  })
+  });
 }
 
 function audioPause() {
-  if(playingAudio) playingAudio.pause();
+  if (playingAudio) playingAudio.pause();
 }
 
 function audioIsPlaying() {
@@ -40,36 +40,41 @@ function audioIsPlaying() {
 }
 
 function audioGetVolume() {
-  if(playingAudio) return playingAudio.volume;
+  if (playingAudio) return playingAudio.volume;
   return 0;
 }
 
 function audioSetVolume(volume) {
-  if(playingAudio) playingAudio.volume = volume;
+  if (playingAudio) playingAudio.volume = volume;
 }
 
 function checkNewGameRelease() {
-  let timestamp = Math.floor(Date. now() / 1000);
-  fetch(`/latest.txt?l=${timestamp}`).then(function(response) {
-    return response.text().then(function(url) {
-      let loc = window.location;
-      if (!loc.href.startsWith(url)) {
-        console.log("Got new version", url);
-        gml_Script_gmcallback_askToGotoNewGameRelease("","", 0)
-      }
+  let timestamp = Math.floor(Date.now() / 1000);
+  fetch(`/latest.txt?l=${timestamp}`)
+    .then(function (response) {
+      return response.text().then(function (url) {
+        let loc = window.location;
+        if (!loc.href.startsWith(url)) {
+          console.log("Got new version", url);
+          gml_Script_gmcallback_askToGotoNewGameRelease("", "", 0);
+        }
+      });
+    })
+    .catch(function (error) {
+      console.error(error);
     });
-  }).catch(function(error) {
-    console.error(error);
-  })
 }
 
-function gotoNewGameRelease() {let timestamp = Math.floor(Date. now() / 1000);
-  fetch(`/latest.txt?l=${timestamp}`, {cache: "no-store"}).then(function(response) {
-    return response.text().then(function(url) {
-      console.log("Going to new version", url);
-      window.location.assign(url);
+function gotoNewGameRelease() {
+  let timestamp = Math.floor(Date.now() / 1000);
+  fetch(`/latest.txt?l=${timestamp}`, { cache: "no-store" })
+    .then(function (response) {
+      return response.text().then(function (url) {
+        console.log("Going to new version", url);
+        window.location.assign(url);
+      });
+    })
+    .catch(function (error) {
+      console.error(error);
     });
-  }).catch(function(error) {
-    console.error(error);
-  })
 }

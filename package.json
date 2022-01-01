@@ -1,0 +1,22 @@
+{
+  "name": "track-worldwidewebb-files",
+  "version": "1.0.0",
+  "description": "tracking Worldwide Webb files",
+  "main": "aqh_moralis.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ailton07/track-worldwidewebb-files.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ailton07/track-worldwidewebb-files/issues"
+  },
+  "homepage": "https://github.com/ailton07/track-worldwidewebb-files#readme",
+  "dependencies": {
+    "prettier": "^2.5.1"
+  }
+}
