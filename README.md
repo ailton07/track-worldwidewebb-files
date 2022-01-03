@@ -17,6 +17,7 @@ The files tracked are:
 After downloading these files, we apply prettier.
 You can find the files in a raw version in: `./raw_files` end the prettified files in `./pretty`.
 
+## Running 
 
 Before running:
 ```
@@ -35,5 +36,5 @@ To manually prettify the files, execute
 prettier --write "*.js"
 ```
 
-### Contact
+## Contact me
 If you want to contact me, ping @runkixt in [Worldwide Web3 Discord](https://discord.gg/E264HbzabD).
