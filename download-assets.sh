@@ -1,6 +1,6 @@
 #!/bin/bash
 BASE_URL='https://worldwidewebb-temphost--party-knonyg3w.web.app/'
-BASE_BUILD="${BASE_URL}builds/0365a335/"
+BASE_BUILD="${BASE_URL}builds/8d4bf7b/"
 BASE_ASSETS="${BASE_BUILD}html5game/"
 
 echo "BASE_URL=$BASE_URL"

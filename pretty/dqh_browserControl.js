@@ -27,6 +27,7 @@ function audioPlay(src) {
 
   playingAudio.play().catch((err) => {
     console.error("Audio playback error", err);
+    playingAudio = null;
   });
 }
 

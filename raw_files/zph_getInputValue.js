@@ -73,9 +73,8 @@ const getUserAavegotchis = async() => {
 	const user = Moralis.User.current();
 	if (user) {
 		let address = user.get('ethAddress')
-		//let address = "0xADA8aA2777825bc615C5F12126F8bf275E2245e5"
 		let r = await Moralis.Cloud.run("userGotchis",{"userAddress":address})
-		for(let i=0;i<min(50,r.length);i++) {
+		for(let i=0;i<min(100,r.length);i++) {
 			let GotchiID = r[i][0]
 			getAavegotchiInventory(GotchiID)
 		}
@@ -142,8 +141,7 @@ const getAavegotchiInventory = async(id) => {
 const getUserSmolBrains = async() => {
 	const user = Moralis.User.current();
 	if (user) {
-		//let address = user.get('ethAddress')
-		let address = "0xE876B710b38C2E34513C5d2c40027b1Cda967578"
+		let address = user.get('ethAddress')
 		let data = await Moralis.Cloud.run("userSmolBrains",{"userAddress":address})
 		console.log(data)
 		gml_Script_gmcallback_returnSmolBrains("","",JSON.stringify(data))
