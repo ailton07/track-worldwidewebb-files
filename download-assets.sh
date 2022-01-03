@@ -70,3 +70,10 @@ ${PRETTIER}
 MOVE_TO_PRETTY='mv *.js ./pretty && mv *.html ./pretty'
 echo "Moving the pretiffied JSs: ${MOVE_TO_PRETTY}"
 ${MOVE_TO_PRETTY}
+
+
+if ! [[ `git status --porcelain` ]]; then
+  echo
+  echo "No changes detected. Exiting..."
+  exit 0
+fi
