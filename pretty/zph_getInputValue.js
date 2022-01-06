@@ -183,8 +183,21 @@ const getUserSmolBrains = async () => {
     let data = await Moralis.Cloud.run("userSmolBrains", {
       userAddress: address,
     });
-    console.log(data);
+    //console.log(data)
     gml_Script_gmcallback_returnSmolBrains("", "", JSON.stringify(data));
+  }
+};
+
+const getUserCryptoPhunks = async () => {
+  const user = Moralis.User.current();
+  if (user) {
+    //let address = user.get('ethAddress')
+    let address = "0x4e68bf412a8720a04fdd9daae38188e50ba60e29";
+    let data = await Moralis.Cloud.run("userCryptoPhunks", {
+      userAddress: address,
+    });
+    //console.log(data)
+    gml_Script_gmcallback_returnCryptoPhunks("", "", JSON.stringify(data));
   }
 };
 
