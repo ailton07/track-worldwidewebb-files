@@ -1,6 +1,6 @@
 #!/bin/bash
 BASE_URL='https://alpha.webb.game/'
-BUILD_NUMBER='18520a7'
+BUILD_NUMBER='22673d8'
 BASE_BUILD="${BASE_URL}builds/${BUILD_NUMBER}/"
 BASE_ASSETS="${BASE_BUILD}html5game/"
 
