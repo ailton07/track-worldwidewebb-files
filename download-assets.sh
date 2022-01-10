@@ -1,13 +1,6 @@
 #!/bin/bash
 BASE_URL='https://alpha.webb.game/'
-BUILD_NUMBER='22673d8'
-BASE_BUILD="${BASE_URL}builds/${BUILD_NUMBER}/"
-BASE_ASSETS="${BASE_BUILD}html5game/"
 
-echo "BASE_URL=$BASE_URL"
-echo "BASE_ASSETS=$BASE_ASSETS"
-echo
-echo
 
 download_file () {
     # $1 is the URL to download
@@ -15,11 +8,30 @@ download_file () {
     DOWNLOADING_STR="Downloading ${CURRENT_URL}"
     echo $DOWNLOADING_STR
     HTTP_CODE=$(curl -O --write-out "%{http_code}\n" "${CURRENT_URL}" --silent)
-    echo $MOVE_TO_PRETTY$HTTP_CODE
+    echo $HTTP_CODE
 }
 
 CURRENT_URL="${BASE_URL}latest.txt"
 download_file $CURRENT_URL
+echo
+
+if ! [[ `git status --porcelain` ]]; then
+  echo
+  echo "No changes detected in latest.txt. Exiting..."
+  exit 0
+fi
+
+# extract the BASE_BUILD
+URL_WITH_BUILD_NUMBER=$(cat ./latest.txt)
+URL_WITH_BUILD_NUMBER="${URL_WITH_BUILD_NUMBER//\/\/builds//builds}"
+BASE_BUILD="${URL_WITH_BUILD_NUMBER//index.html/}"
+BASE_ASSETS="${BASE_BUILD}html5game/"
+
+echo "BASE_URL=$BASE_URL"
+echo "BASE_BUILD=$BASE_BUILD"
+echo "BASE_ASSETS=$BASE_ASSETS"
+echo
+echo
 
 CURRENT_URL="${BASE_BUILD}index.html"
 download_file $CURRENT_URL
