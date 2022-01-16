@@ -106,10 +106,10 @@ const getWhitelistWinners = () => {
     });
 };
 
-const getUserAavegotchis = async () => {
+const getUserAavegotchis = async (address) => {
   const user = Moralis.User.current();
   if (user) {
-    let address = user.get("ethAddress");
+    //let address = user.get('ethAddress')
     let r = await Moralis.Cloud.run("userGotchis", { userAddress: address });
     for (let i = 0; i < min(100, r.length); i++) {
       let GotchiID = r[i][0];
@@ -199,6 +199,15 @@ const getUserCryptoPhunks = async () => {
     //console.log(data)
     gml_Script_gmcallback_returnCryptoPhunks("", "", JSON.stringify(data));
   }
+};
+
+const sendCenMessage = async (msg, name) => {
+  const user = Moralis.User.current();
+  let _user = name;
+  let data = await Moralis.Cloud.run("sendCenMessage", {
+    username: _user,
+    message: msg,
+  });
 };
 
 const convertSVG = async (data) => {
