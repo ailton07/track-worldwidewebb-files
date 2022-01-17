@@ -27,8 +27,13 @@ URL_WITH_BUILD_NUMBER="${URL_WITH_BUILD_NUMBER//\/\/builds//builds}"
 BASE_BUILD="${URL_WITH_BUILD_NUMBER//index.html/}"
 BASE_ASSETS="${BASE_BUILD}html5game/"
 
+BUILD=${BASE_BUILD:31} 
+BUILD=${BUILD%?}
+
+
 echo "BASE_URL=$BASE_URL"
 echo "BASE_BUILD=$BASE_BUILD"
+echo "BUILD=$BUILD"
 echo "BASE_ASSETS=$BASE_ASSETS"
 echo
 echo
@@ -90,3 +95,10 @@ if ! [[ `git status --porcelain` ]]; then
   echo "No changes detected. Exiting..."
   exit 0
 fi
+
+MESSAGE="feat: new build $BUILD"
+COMMIT="git add . && git commit -m $MESSAGE && git push"
+echo ${COMMIT}
+git add . 
+git commit -m "$MESSAGE"
+git push
