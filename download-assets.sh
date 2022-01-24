@@ -83,6 +83,10 @@ ${SAVE_RAW_FILES}
 
 echo
 echo
+# to fix
+EXTEND_NODE_MEMORY="export NODE_OPTIONS=\"--max-old-space-size=4096\""
+echo "Increasing node memory: ${EXTEND_NODE_MEMORY}"
+${EXTEND_NODE_MEMORY}
 PRETTIER="npx prettier --write *.js"
 echo "${PRETTIER}"
 ${PRETTIER}
