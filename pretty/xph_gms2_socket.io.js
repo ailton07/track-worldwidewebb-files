@@ -3,78 +3,82 @@
 
 // Small wrapper of Socket.io for GM:S 2
 class SocketIO {
-  constructor() {
-    this.socket;
-  }
 
-  connect(url) {
-    this.socket = io(url, { upgrade: false, transports: ["websocket"] });
-    this.socket.on("connect", () => {
-      console.log(this.socket.id);
-      gml_Script_gmcallback_sio_on_connect(-1, -1, this.socket.id);
-    });
+    constructor() {
+        this.socket;
+    }
 
-    this.socket.on("disconnect", () => {
-      gml_Script_gmcallback_sio_on_disconnect();
-    });
-  }
+    connect(url) {
+        this.socket = io(url, { upgrade: false, transports: ['websocket'] });
+        this.socket.on('connect', () => {
+            console.log(this.socket.id);
+            gml_Script_gmcallback_sio_on_connect(-1, -1, this.socket.id);
+        });
 
-  disconnect() {
-    this.socket.close();
-  }
+        this.socket.on('disconnect', () => {
+            gml_Script_gmcallback_sio_on_disconnect();
+        });
+    }
 
-  reconnect() {
-    this.socket.open();
-  }
+    disconnect() {
+        this.socket.close();
+    }
 
-  addEvent(name) {
-    this.socket.on(name, (data) => {
-      if (typeof data === "object") data = JSON.stringify(data);
+    reconnect() {
+        this.socket.open();
+    }
 
-      if (name === "game_update") {
-        try {
-          window[`gml_Script_gmcallback_sio_on_${name}`](-1, -1, data);
-        } catch (error) {
-          console.error(error);
-        }
-      } else {
-        window[`gml_Script_gmcallback_sio_on_${name}`](-1, -1, data);
-      }
-    });
-  }
+    addEvent(name) {
+        this.socket.on(name, (data) => {
+            if (typeof data === 'object')
+                data = JSON.stringify(data);
+            
+            if (name === "game_update") {
+                try {
+                    window[`gml_Script_gmcallback_sio_on_${name}`](-1, -1, data);
+                }
+                catch (error) {
+                    console.error(error);
+                }
+            }
+            else {
+                window[`gml_Script_gmcallback_sio_on_${name}`](-1, -1, data);
+            }
+        });
+    }
 
-  emit(name, data) {
-    this.socket.emit(name, data);
-  }
+    emit(name, data) {
+        this.socket.emit(name, data);
+    }
 
-  getConnectionStatus() {
-    return this.socket.connected;
-  }
+    getConnectionStatus() {
+        return this.socket.connected;
+    }
 }
 
 // API for GM:S 2
 const socketio = new SocketIO();
 
 function sio_connect(url) {
-  socketio.connect(url);
+    socketio.connect(url);
 }
 
 function sio_disconnect() {
-  socketio.disconnect();
+    socketio.disconnect();
 }
 
 function sio_reconnect() {
-  socketio.reconnect();
+    socketio.reconnect();
 }
 
 function sio_addEvent(name) {
-  socketio.addEvent(name);
+    socketio.addEvent(name);
 }
 
 function sio_emit(name, data) {
-  socketio.emit(name, data);
+    socketio.emit(name, data);
 }
 
 function sio_getConnectionStatus() {
-  return socketio.getConnectionStatus();
+    return socketio.getConnectionStatus();
 }

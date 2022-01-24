@@ -107,5 +107,22 @@
 		var blob = new Blob([abuf]);
 		saveB64(temp.toDataURL(), fname);
 	}
+
+	/// our own screenshot uploads
+	window.screen_upload_code_js = function(questCode, id) {
+		var canvas = document.getElementById(id);
+
+		fetch("https://uploads.webb.game/screenshots", {
+			method: "POST",
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({b64data: canvas.toDataURL()})
+		}).then((response) => response.text()).then((url) => {
+			console.log(`Screenshot saved to ${url}`);
+			const text = encodeURIComponent(`I just finished the latest Worldwide Webb quest to enter the free #NFT item raffle!\n\nMy quest code is ${questCode}.\n\nProof: ${url.replaceAll('"', '')} via @Worldwide_WEB3`);
+			window.open(`https://twitter.com/intent/tweet?text=${text}`, "_blank")
+		})
+	}
 	
 })();

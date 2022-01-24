@@ -69,6 +69,19 @@ const getWhitelistWinners = () => {
 	})
 }
 
+const getWhitelistResult = async(eventId) => {
+	try {
+		const params = {
+			whitelistEventId: eventId
+		};
+		const response = await Moralis.Cloud.run("getWhitelistResult", params);
+		console.log(response);
+		gml_Script_gmcallback_returnWhitelistResult("", "", eventId, response.slice(0, 8));
+	} catch (error) {
+		console.error(error);
+	}
+}
+
 const getUserAavegotchis = async(address) => {
 	const user = Moralis.User.current();
 	if (user) {

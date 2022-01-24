@@ -22,13 +22,16 @@ if ! [[ `git status --porcelain` ]]; then
 fi
 
 # extract the BASE_BUILD
-URL_WITH_BUILD_NUMBER=$(cat ./latest.txt)
+#URL_WITH_BUILD_NUMBER=$(cat ./latest.txt)
+BUILD_NUMBER=$(cat ./latest.txt)
+URL_WITH_BUILD_NUMBER="${BASE_URL}builds/${BUILD_NUMBER}/"
 URL_WITH_BUILD_NUMBER="${URL_WITH_BUILD_NUMBER//\/\/builds//builds}"
 BASE_BUILD="${URL_WITH_BUILD_NUMBER//index.html/}"
 BASE_ASSETS="${BASE_BUILD}html5game/"
 
-BUILD=${BASE_BUILD:31} 
-BUILD=${BUILD%?}
+#BUILD=${BASE_BUILD:31} 
+#BUILD=${BUILD%?}
+BUILD=$BUILD_NUMBER
 
 
 echo "BASE_URL=$BASE_URL"

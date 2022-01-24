@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Primary Meta Tags -->
+<title>Worldwide Webb - A dystopian pixel metaverse</title>
+<meta name="title" content="Worldwide Webb - A dystopian pixel metaverse">
+<meta name="description" content="A dystopian, pixel metaverse on the Ethereum blockchain.
+Join http://discord.gg/worldwidewebb Developed by 
+@WebbEmotional">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Worldwide Webb - A dystopian pixel metaverse">
+<meta property="og:description" content="A dystopian, pixel metaverse on the Ethereum blockchain.
+Join http://discord.gg/worldwidewebb Developed by 
+@WebbEmotional">
+<meta property="og:image" content="https://webb.pink/chatlog/worldwidewebb.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:title" content="Worldwide Webb - A dystopian pixel metaverse">
+<meta property="twitter:description" content="A dystopian, pixel metaverse on the Ethereum blockchain.
+Join http://discord.gg/worldwidewebb Developed by 
+@WebbEmotional">
+<meta property="twitter:image" content="https://webb.pink/chatlog/worldwidewebb.png">
+</head>
+
+<body>
+  <b>The link you have is expired</b> <a href="#" id="gamelink">Go to latest build of the game</a>
+  <script>
+    window.onload = function() {
+      let timestamp = Math.floor(Date. now() / 1000);
+      fetch(`/latest.txt?l=${timestamp}`).then(function(response) {
+        return response.text().then(function(build) {
+          let newUrl = `${window.location.protocol}//${window.location.hostname}/builds/${build}/index.html?l=${timestamp}`;
+          document.getElementById("gamelink").href = newUrl;
+        });
+      });
+    }
+  </script>
+</body>
+</html>
