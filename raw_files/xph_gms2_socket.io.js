@@ -33,16 +33,11 @@ class SocketIO {
             if (typeof data === 'object')
                 data = JSON.stringify(data);
             
-            if (name === "game_update") {
-                try {
-                    window[`gml_Script_gmcallback_sio_on_${name}`](-1, -1, data);
-                }
-                catch (error) {
-                    console.error(error);
-                }
-            }
-            else {
+            try {
                 window[`gml_Script_gmcallback_sio_on_${name}`](-1, -1, data);
+            }
+            catch (error) {
+                console.error(error);
             }
         });
     }
