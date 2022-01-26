@@ -132,10 +132,10 @@
       .then((url) => {
         console.log(`Screenshot saved to ${url}`);
         const text = encodeURIComponent(
-          `I just finished the latest Worldwide Webb quest to enter the free #NFT item raffle!\n\nMy quest code is ${questCode}.\n\nProof: ${url.replaceAll(
+          `I just finished the latest Worldwide Webb quest!\n\nFollow @Worldwide_WEB3 & equip your own NFTs in-game!\n\nwebb.game\n\nScreenshot: ${url.replaceAll(
             '"',
             ""
-          )} via @Worldwide_WEB3`
+          )}`
         );
         window.open(`https://twitter.com/intent/tweet?text=${text}`, "_blank");
       });
