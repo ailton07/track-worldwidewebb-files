@@ -206,11 +206,11 @@ const getUserSmolBrains = async () => {
   }
 };
 
-const getUserCryptoPhunks = async () => {
+const getUserCryptoPhunks = async (address) => {
   const user = Moralis.User.current();
   if (user) {
     //let address = user.get('ethAddress')
-    let address = "0x4e68bf412a8720a04fdd9daae38188e50ba60e29";
+    //let address = "0x4e68bf412a8720a04fdd9daae38188e50ba60e29"
     let data = await Moralis.Cloud.run("userCryptoPhunks", {
       userAddress: address,
     });
