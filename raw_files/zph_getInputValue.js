@@ -1,5 +1,3 @@
-
-
 function getMoralisUserToken(appId) {
 	try {
 		return JSON.parse(window.localStorage.getItem(`Parse/${appId}/currentUser`)).sessionToken;
@@ -311,6 +309,28 @@ const littlesChristmasPartyAttendance = () => {
 	} else {
 		Moralis.authenticate().then((_user) => {
 			littlesAttend(user)
+		}).catch(error => {
+			console.log(error)
+		})
+	}
+}
+
+const AlpacaPartyAttendance = () => {
+	function alpacaAttend(user) {
+		Moralis.Cloud.run("AlpacadabrazRaffleEntry").then((result) => {
+			console.log("attended")
+		}).catch(error => {
+			console.log(error)
+		})
+	}
+	
+	const user = Moralis.User.current();
+	
+	if (user) {
+		alpacaAttend(user)
+	} else {
+		Moralis.authenticate().then((_user) => {
+			alpacaAttend(user)
 		}).catch(error => {
 			console.log(error)
 		})

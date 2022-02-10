@@ -391,6 +391,32 @@ const littlesChristmasPartyAttendance = () => {
   }
 };
 
+const AlpacaPartyAttendance = () => {
+  function alpacaAttend(user) {
+    Moralis.Cloud.run("AlpacadabrazRaffleEntry")
+      .then((result) => {
+        console.log("attended");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  const user = Moralis.User.current();
+
+  if (user) {
+    alpacaAttend(user);
+  } else {
+    Moralis.authenticate()
+      .then((_user) => {
+        alpacaAttend(user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+};
+
 const getHighscore = () => {
   function getScore(user) {
     Moralis.Cloud.run("getUserGameHighscore", {
