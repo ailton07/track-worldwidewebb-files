@@ -337,6 +337,39 @@ const AlpacaPartyAttendance = () => {
 	}
 }
 
+const GenericEvent = (eventFunc) => {
+	function _genericEvent(user) {
+		Moralis.Cloud.run(eventFunc).then((result) => {
+			console.log("complete")
+		}).catch(error => {
+			console.log(error)
+		})
+	}
+	
+	const user = Moralis.User.current();
+	
+	if (user) {
+		_genericEvent(user)
+	} else {
+		Moralis.authenticate().then((_user) => {
+			_genericEvent(user)
+		}).catch(error => {
+			console.log(error)
+		})
+	}
+}
+
+const BobuEvent = () => {
+	GenericEvent("bobuEvent")
+}
+
+const SamuraiEvent = () => {
+	GenericEvent("samuraiEvent")
+}
+
+const TeshimiParty1 = () => {
+	GenericEvent("teshimiParty1")
+}
 
 const getHighscore = () => {
 

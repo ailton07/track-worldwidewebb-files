@@ -120,7 +120,7 @@
 			body: JSON.stringify({b64data: canvas.toDataURL()})
 		}).then((response) => response.text()).then((url) => {
 			console.log(`Screenshot saved to ${url}`);
-			const text = encodeURIComponent(`I just finished the latest Worldwide Webb quest!\n\nFollow @Worldwide_WEB3 & equip your own NFTs in-game!\n\nwebb.game\n\nScreenshot: ${url.replaceAll('"', '')}`);
+			const text = encodeURIComponent(`I just finished the latest Worldwide Webb quest!\n\nFollow @Worldwide_WEB3 & equip your own NFTs in-game! #JoinTheWebb\n\nwebb.game\n\nScreenshot: ${url.replaceAll('"', '')}`);
 			window.open(`https://twitter.com/intent/tweet?text=${text}`, "_blank")
 		})
 	}

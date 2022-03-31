@@ -132,7 +132,7 @@
       .then((url) => {
         console.log(`Screenshot saved to ${url}`);
         const text = encodeURIComponent(
-          `I just finished the latest Worldwide Webb quest!\n\nFollow @Worldwide_WEB3 & equip your own NFTs in-game!\n\nwebb.game\n\nScreenshot: ${url.replaceAll(
+          `I just finished the latest Worldwide Webb quest!\n\nFollow @Worldwide_WEB3 & equip your own NFTs in-game! #JoinTheWebb\n\nwebb.game\n\nScreenshot: ${url.replaceAll(
             '"',
             ""
           )}`
